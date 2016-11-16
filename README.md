@@ -9,15 +9,15 @@
 Acknowledgement
 
 * Andrew Ng
-** https://class.coursera.org/ml-003/lecture
-** http://www.holehouse.org/mlclass - note
+  * https://class.coursera.org/ml-003/lecture
+  * http://www.holehouse.org/mlclass - note
 
 * Convolutional Neural Networks for VIsual Recognition
-** http://cs231n.github.io
+  * http://cs231n.github.io
 
 * Tensorflow
-** https://www.tensorflow.org
-** https://github.com/aymericdamien/TensorFlow-Examples
+  * https://www.tensorflow.org
+  * https://github.com/aymericdamien/TensorFlow-Examples
 
 ## Lec 01 - 기본적인 Machine Learning의 용어와 개념
 
@@ -53,7 +53,7 @@ Acknowledgement
 
 * reduce_mean
 * train.GradientDescentOptimizer
-	* minimize: 이 operation이 training (eg `train = optimizer.minimize(cost)` )
+  * minimize: 이 operation이 training (eg `train = optimizer.minimize(cost)` )
 * initialize_all_variables: 이 함수도 세션 내에서 실행해야 함.
 * placeholder를 이용하면 모델을 재사용할 수 있다.
 
