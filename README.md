@@ -1,7 +1,6 @@
 # 모두를 위한 딥러닝 실습
-
 * 강의 영상: https://www.youtube.com/playlist?list=PLlMkM4tgfjnLSOjrEJN31gZATbcj_MpUm
-* 강의 웹사이트: http://humkim.github.io/ml/
+* 강의 웹사이트: http://hunkim.github.io/ml/
 * 코드: https://github.com/FuZer/Study_TensorFlow
 
 ## Lec 00 - Machine/Deep learning 수업의 개요와 일정
@@ -66,4 +65,17 @@ update rule: `W = W - alpha * d/dW (cost(W))
 W = W - alpha  * 1 / m sigma ((Wxi - yi) * xi)
 
 linear regression의 cost function은 w에 대한 이차식. convex function으로 진동하지 않는다면 항상 답을 찾을 수 있다.
+
+## Lab 03 - Minimizing Cost
+
+W에 따른 cost function의 변화  
+gradient descent 구현
+
+## Lec 04 - Multi-variable(multi-feature) linear regression
+
+matrix로 multi-variable과 bias를 표현  
+W 대신 W transpose를 사용.
+
+## Lab 04 - Multi-variable linear regression
+
 
