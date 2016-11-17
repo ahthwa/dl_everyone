@@ -79,3 +79,23 @@ W 대신 W transpose를 사용.
 ## Lab 04 - Multi-variable linear regression
 
 placeholder, weight를 matrix 로 표현하고 matrix multiplication으로 구현.
+
+## Lec 05-1 - Logistic (regression) classification
+
+logistic hypothesis = sigmoid(WX) = 1 / ( 1 + exp(-WX))
+
+## Lec 05-2 - Logistic (regression) classification. cost function & gradient descent
+
+바뀐 hypothesis를 기존 mean square error cost function에 그대로 대입하면, cost function이 convex가 아님(local optimum이 있음). 따라서 다른 종류의 cost function이 필요함
+
+cost function = mean (-log (H(x)) : y = 1 or -log(1-H(x)) : y = 0)
+= mean(- y log(H) - (1-y) log(1-H)))
+
+minimize cost: gradient descent
+
+## Lab 05 - logistic regression classifier
+
+## Lec 06 - Softmax Classification - multinomial classification
+
+
+
