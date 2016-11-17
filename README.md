@@ -78,4 +78,4 @@ W 대신 W transpose를 사용.
 
 ## Lab 04 - Multi-variable linear regression
 
-
+placeholder, weight를 matrix 로 표현하고 matrix multiplication으로 구현.
