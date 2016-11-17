@@ -109,6 +109,12 @@ softmax: output을 확률로 만든다. score의 sum이 1이고, 각각이 0과 
 
 cost function: cross entropy를 사용한다. - sum( y log(y_))
 
-cross entropy는 logistic regression의 cost function의 multinomial 에서의 일반적인 form
+cross entropy는 logistic regression의 cost function을 multinomial로 확장한 일반적인 모양
 
-**why transpose?**
+## Lab 06
+
+**why transpose?** - sample을 row vector로 표현하면 두가지 장점이 있다. 이 경우 W by X 대신 X by W 로 순서가 바뀐다.
+
+1. tf.softmax는 default로 row 방향으로 동작함.
+2. python code에서 sample 추가될 때 마다 row 를 추가해주면 된다.
+
