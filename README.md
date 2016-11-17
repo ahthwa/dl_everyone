@@ -111,3 +111,4 @@ cost function: cross entropy를 사용한다. - sum( y log(y_))
 
 cross entropy는 logistic regression의 cost function의 multinomial 에서의 일반적인 form
 
+**why transpose?**
