@@ -95,7 +95,19 @@ minimize cost: gradient descent
 
 ## Lab 05 - logistic regression classifier
 
-## Lec 06 - Softmax Classification - multinomial classification
+## Lec 06-1 - Softmax Classification - multinomial classification
 
+여러개의 클래스로 분류
 
+클래스별로 binary classification. 클래스 갯수 만큼의 classification이 필요함  
+클래스 별 weight vector를 weight matrix로 만들 수 있음. 각 클래스 별 score 혹은 확률 vector가 matrix multiplication으로 만들어 짐
+
+## Lec 06-2 - Softmax Classification
+
+softmax: output을 확률로 만든다. score의 sum이 1이고, 각각이 0과 1 사이에 있도록.  
+그리고 one-hot encoding 해서 하나만 1, 나머지는 0으로.
+
+cost function: cross entropy를 사용한다. - sum( y log(y_))
+
+cross entropy는 logistic regression의 cost function의 multinomial 에서의 일반적인 form
 
