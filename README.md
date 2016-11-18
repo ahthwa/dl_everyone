@@ -107,7 +107,7 @@ minimize cost: gradient descent
 softmax: output을 확률로 만든다. score의 sum이 1이고, 각각이 0과 1 사이에 있도록.  
 그리고 one-hot encoding 해서 하나만 1, 나머지는 0으로.
 
-cost function: cross entropy를 사용한다. - sum( y log(y_))
+cost function: cross entropy를 사용한다. `- sum( y log(y_))`
 
 cross entropy는 logistic regression의 cost function을 multinomial로 확장한 일반적인 모양
 
@@ -117,4 +117,45 @@ cross entropy는 logistic regression의 cost function을 multinomial로 확장�
 
 1. tf.softmax는 default로 row 방향으로 동작함.
 2. python code에서 sample 추가될 때 마다 row 를 추가해주면 된다.
+
+## Lec 07-1 - Learning rate, data preprocessing, overfitting
+
+### Learning rate
+
+* large learning rate: overshooting - 진동, 혹은 발산할 수 있음
+* small learning rate: 시간이 너무 오래 걸리거나 local minimum
+
+### Data (X) preprocessing
+
+normalize - feature의 scale 차이가 큰 데이터를 learning하면 scale의 폭이 좁은 feature에 대해서는 성능이 심하게 움직일 수 있어서 안정적이지 않음. 이때 normalize가 필요함.
+
+standardization: x' = (xj - u) / sigma j
+
+### overfitting
+
+트레이닝 데이터를 늘이거나, 피쳐를 줄이거나, regularization을 한다.
+
+regularization?
+
+decision boundary를 데이터에 맞게 복잡한 모양으로 만들면 overfitting의 가능성이 높다고 볼수 있다. learning weight가 크다면 decision boundary가 구부러져 있을 수 있으므로 weight의 크기를 제한하여 decision boundary를 펴는 것이 regularization이다.
+
+cost에 weight의 크기를 반영하여 learning하면 되는데, 예를 들면 weight 제곱 등에 regularization strength를 곱한 값을 cost계산 시 더해주면 된다.
+
+`l2reg = 0.001 * tf.reduce_sum(tf.square(W))`
+
+## Lec 07-2 - Learning and test data sets
+
+learning한 모델이 얼마나 잘 동작하나 - 모델 성능 평가
+
+트레이닝데이터로 평가한다면? 외우면 되므로 다 맞출 수 있다. training과 test set을 나눠서 training set은 모델 학습하고 test set은 점수 평가에만 사용해야 한다.
+
+test set은 단 한번만 사용해야 한다.
+
+validation set은? learning rate alpha, regularization strength lambda의 튜닝은 validation set으로 결정(모의시험 처럼). 모델은 training set으로 build.
+
+online learning - training set을 잘게 잘라서 한 덩어리씩 점진적으로 학습.
+
+평가 지표
+
+* accuracy - 예측 성공 갯수 / 전체 데이터 갯수
 
