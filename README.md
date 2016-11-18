@@ -159,3 +159,34 @@ online learning - training set을 잘게 잘라서 한 덩어리씩 점진적으
 
 * accuracy - 예측 성공 갯수 / 전체 데이터 갯수
 
+## Lec 08-1 - Deep Neural Nets for Everyone
+
+activate(sum of (wx) + bias)
+
+xor problem
+
+MLP - multilayer perceptron - xor을 풀 수 있음. 하지만 training할 수 없어 - minsky
+
+하지만 backpropagation 으로 weight, bias를 update할 수 있음. - paul werbos, geoffrey hinton
+
+CNN
+
+layer가 많으면 backpropagation이 잘 동작하지 않았음. SVM이나 RandomForest등 다른 알고리즘들을 더 많이 사용하게 됨.
+
+## Lec 08-2
+
+2006, 2007의 논문 내용은 초기값을 잘 주면 deep network도 학습할 수 있다. 어려운 문제를 푸는데 오히려 효율적이다.
+
+ImageNet에서 CNN으로 높은 성능을 내서 유명해짐.
+
+...
+
+역사. 족보
+
+
+
+
+
+
+
+
