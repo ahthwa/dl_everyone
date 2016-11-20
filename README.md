@@ -20,8 +20,7 @@ Acknowledgement
 
 ## Lec 01 - 기본적인 Machine Learning의 용어와 개념
 
-* ML
-* Supervised, Unsupervised Learning
+Keyword: ML, Supervised, Unsupervised Learning
 
 ## Lab 01 - TensorFlow Basics
 
@@ -40,13 +39,7 @@ Acknowledgement
 
 ## Lec 02 - Linear Regression
 
-일반적인 모델링 순서는
-
-1. 모델 formulize - hypothesis를 표현
-2. cost function (loss function) 을 정의
-3. training data의 error를 최소화하는 parameter(W, b)를 찾음.
-
-선형모델을 mean squared error를 loss function으로 학습하는 방법
+Keyword: 학습 순서 (hypothesis, cost function, optimize), linear regression의 hypothesis, cost function(mean square error), optimize 방법(gradient descent)
 
 ## Lab 02 - Linear Regression
 
@@ -58,13 +51,11 @@ Acknowledgement
 
 ## Lec 03 - How to minimize cost
 
-* linear regression에서 cost(W) 함수는 W에 대한 2차식.
-* gradient descent를 사용했음.
+* linear regression의 cost function - 2차식. convex function
+* gradient descent
 
 update rule: `W = W - alpha * d/dW (cost(W))  
 W = W - alpha  * 1 / m sigma ((Wxi - yi) * xi)
-
-linear regression의 cost function은 w에 대한 이차식. convex function으로 진동하지 않는다면 항상 답을 찾을 수 있다.
 
 ## Lab 03 - Minimizing Cost
 
@@ -86,29 +77,18 @@ logistic hypothesis = sigmoid(WX) = 1 / ( 1 + exp(-WX))
 
 ## Lec 05-2 - Logistic (regression) classification. cost function & gradient descent
 
-바뀐 hypothesis를 기존 mean square error cost function에 그대로 대입하면, cost function이 convex가 아님(local optimum이 있음). 따라서 다른 종류의 cost function이 필요함
-
-cost function = mean (-log (H(x)) : y = 1 or -log(1-H(x)) : y = 0)
-= mean(- y log(H) - (1-y) log(1-H)))
-
-minimize cost: gradient descent
+logistic regression의 cost function = mean (-log (H(x)) : y = 1 or -log(1-H(x)) : y = 0) = mean(- y log(H) - (1-y) log(1-H)))
 
 ## Lab 05 - logistic regression classifier
 
 ## Lec 06-1 - Softmax Classification - multinomial classification
 
-여러개의 클래스로 분류
-
-클래스별로 binary classification. 클래스 갯수 만큼의 classification이 필요함  
-클래스 별 weight vector를 weight matrix로 만들 수 있음. 각 클래스 별 score 혹은 확률 vector가 matrix multiplication으로 만들어 짐
+여러개의 클래스로 분류할 때 클래스 갯수만큼 classification weight vector 필요. weight matrix 하나로 표현.
 
 ## Lec 06-2 - Softmax Classification
 
-softmax: output을 확률로 만든다. score의 sum이 1이고, 각각이 0과 1 사이에 있도록.  
-그리고 one-hot encoding 해서 하나만 1, 나머지는 0으로.
-
-cost function: cross entropy를 사용한다. `- sum( y log(y_))`
-
+* softmax - output score를 확률로 표현(score 합이 1이고 각 score는 0과 1 사이의 값을 갖도록). classification은 one-hot encoding.
+* cost function: cross entropy. `- sum( y log(y_))`  
 cross entropy는 logistic regression의 cost function을 multinomial로 확장한 일반적인 모양
 
 ## Lab 06
@@ -120,10 +100,12 @@ cross entropy는 logistic regression의 cost function을 multinomial로 확장�
 
 ## Lec 07-1 - Learning rate, data preprocessing, overfitting
 
-### Learning rate
+Keyword: Learning rate, preprocessing(normalize), overfitting
+
+### Learning Rate
 
 * large learning rate: overshooting - 진동, 혹은 발산할 수 있음
-* small learning rate: 시간이 너무 오래 걸리거나 local minimum
+* small learning rate: 시간이 너무 오래 걸리거나 local minimum에 빠질 수 있음.
 
 ### Data (X) preprocessing
 
@@ -135,23 +117,22 @@ standardization: x' = (xj - u) / sigma j
 
 트레이닝 데이터를 늘이거나, 피쳐를 줄이거나, regularization을 한다.
 
-regularization?
+**regularization**
 
-decision boundary를 데이터에 맞게 복잡한 모양으로 만들면 overfitting의 가능성이 높다고 볼수 있다. learning weight가 크다면 decision boundary가 구부러져 있을 수 있으므로 weight의 크기를 제한하여 decision boundary를 펴는 것이 regularization이다.
-
-cost에 weight의 크기를 반영하여 learning하면 되는데, 예를 들면 weight 제곱 등에 regularization strength를 곱한 값을 cost계산 시 더해주면 된다.
+decision boundary를 데이터에 맞춰서 복잡한 모양으로 만들면 overfitting의 가능성이 높아진다.
+decision boundary를 펴 주기 위해서 weight의 크기에 penalty를 주는 것이 regularization.
 
 `l2reg = 0.001 * tf.reduce_sum(tf.square(W))`
 
 ## Lec 07-2 - Learning and test data sets
 
-learning한 모델이 얼마나 잘 동작하나 - 모델 성능 평가
+Keyword: test data, validation data, online learning, accuracy
 
-트레이닝데이터로 평가한다면? 외우면 되므로 다 맞출 수 있다. training과 test set을 나눠서 training set은 모델 학습하고 test set은 점수 평가에만 사용해야 한다.
+learning한 모델의 성능 평가
 
-test set은 단 한번만 사용해야 한다.
-
-validation set은? learning rate alpha, regularization strength lambda의 튜닝은 validation set으로 결정(모의시험 처럼). 모델은 training set으로 build.
+* 트레이닝데이터로 평가한다면? 외우면 되므로 다 맞출 수 있다. training과 test set을 나눠서 training set은 모델 학습하고 test set은 점수 평가에만 사용해야 한다.
+* test set은 단 한번만 사용해야 한다.
+* validation set은? learning rate alpha, regularization strength lambda의 튜닝은 validation set으로 결정(모의시험 처럼). 모델은 training set으로 build.
 
 online learning - training set을 잘게 잘라서 한 덩어리씩 점진적으로 학습.
 
@@ -159,34 +140,17 @@ online learning - training set을 잘게 잘라서 한 덩어리씩 점진적으
 
 * accuracy - 예측 성공 갯수 / 전체 데이터 갯수
 
-## Lec 08-1 - Deep Neural Nets for Everyone
+## Lec 08-1,2 - Deep Neural Nets for Everyone
 
-activate(sum of (wx) + bias)
+neural network의 역사(족보)
 
-xor problem
+* 뇌의 neuron - weight sum후에 activate하는 구조
+* xor problem
+* MLP(multi-layer perceptron)
+* backpropagation(paul werbos, geoffrey hinton)
+* CNN(convolutional neural netowkr)
+* deep network 학습의 어려움과 SVM/Random Forest등
+* deep network 학습 문제 해결 방법
 
-MLP - multilayer perceptron - xor을 풀 수 있음. 하지만 training할 수 없어 - minsky
-
-하지만 backpropagation 으로 weight, bias를 update할 수 있음. - paul werbos, geoffrey hinton
-
-CNN
-
-layer가 많으면 backpropagation이 잘 동작하지 않았음. SVM이나 RandomForest등 다른 알고리즘들을 더 많이 사용하게 됨.
-
-## Lec 08-2
-
-2006, 2007의 논문 내용은 초기값을 잘 주면 deep network도 학습할 수 있다. 어려운 문제를 푸는데 오히려 효율적이다.
-
-ImageNet에서 CNN으로 높은 성능을 내서 유명해짐.
-
-...
-
-역사. 족보
-
-
-
-
-
-
-
+## Lec 09-1 - Neural Nets for XOR
 
