@@ -154,3 +154,21 @@ neural network의 역사(족보)
 
 ## Lec 09-1 - Neural Nets for XOR
 
+## Lec 09-x - backpropagation 미분
+
+미분의 chain rule: f(g(x))의 미분 - df/dx = df/dg * dg/dx
+
+backpropagation의 미분에서 chain rule을 응용함.
+
+## Lec 09-2
+
+f = wx + b 에서 df/dw, df/dx, df/db 는 chain rule로 거꾸로 계산할 수 있다.
+
+sigmoid 함수도 graph로 표현한 다음 chain rule을 이용하여 미분을 구할 수 있다.
+
+* g(z) = 1 / (1 + e^ -z)
+* z -> z * -1 (=v1) -> exp(v1) (=v2) -> v2 + 1 (=v3) -> 1/(v3) -> g
+* dg/dz = dg/dv3 * dv3/dv2 * dv2/dv1 * dv1/dz = g * (1-g)
+
+tensorflow에서는 식을 tensor와 operator의 graph로 표현하는데, chain rule을 이용한 미분이 쉬워진다. 이 graph는 tensor board를 통해 확인할 수 있다.
+
