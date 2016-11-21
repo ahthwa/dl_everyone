@@ -13,8 +13,15 @@ W2 = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0))
 b2 = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
 
 l1 = tf.div(1., 1. + tf.exp( - (tf.matmul(W1, X))))
-#y_ = tf.sigmoid(tf.matmul(W2, l1) + b2)
 y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1) + b2)))
+
+# sigmoid 함수를 사용
+#y_ = tf.sigmoid(tf.matmul(W2, l1) + b2)
+
+# bias를 matrix안에
+#W2 = tf.Variable(tf.random_uniform([1, 3], -1.0, 1.0))
+#y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1_out))))
+#l1_out = tf.concat(0, [l1, tf.ones([1, len(x_data[0])])])
 
 cost = - tf.reduce_mean(Y * tf.log(y_) + (1 - Y) * tf.log(1-y_))
 alpha = 0.1
@@ -36,3 +43,4 @@ with tf.Session() as sess:
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
     print(sess.run([y_, tf.floor(y_ + 0.5), correct_prediction, accuracy], feed_dict={X:x_data, Y:y_data}))
     print("Accuracy:", accuracy.eval({X:x_data, Y:y_data}))
+
