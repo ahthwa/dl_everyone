@@ -172,3 +172,16 @@ sigmoid 함수도 graph로 표현한 다음 chain rule을 이용하여 미분을
 
 tensorflow에서는 식을 tensor와 operator의 graph로 표현하는데, chain rule을 이용한 미분이 쉬워진다. 이 graph는 tensor board를 통해 확인할 수 있다.
 
+## Lab09-2 Tensor Board
+
+5 steps
+
+* TF graph 중에서 출력할 node를 결정 (`tf.histogram_summary`, `tf.scalar_summary`)
+  * scalar\_summary는 event 페이지에 표시된다. cost, accuracy 등 평가 지표를 보여주기 적합하다.
+  * histogram\_summary는 distributions, histograms 페이지에서 볼 수 있다.
+* summary를 merge (`tf.merge_all_summaries()`)
+* summary writer 생성 (`writer = tf.train.SummaryWriter("/tmp/mnist_logs", sess.graph)`)
+* summary 실행하고 add\_summary를 적절한 step마다 호출 (`summary = sess.run(merged, ...)`, `writer.add_summary(summary, step)`)
+* tensorboard 실행 (`tensorboard --logdir=/tmp/mnist_logs`)
+
+
