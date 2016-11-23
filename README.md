@@ -184,4 +184,56 @@ tensorflow에서는 식을 tensor와 operator의 graph로 표현하는데, chain
 * summary 실행하고 add\_summary를 적절한 step마다 호출 (`summary = sess.run(merged, ...)`, `writer.add_summary(summary, step)`)
 * tensorboard 실행 (`tensorboard --logdir=/tmp/mnist_logs`)
 
+## Lec 10-1, 2
+
+layer를 여럿 쌓아서 deep network 만드는 법을 배웠다.
+
+xor문제를 9 layer deep network으로 풀어보면 cost가 줄어들지 않는다. 학습이 되지 않음.
+
+backpropagation을 해 보면 sigmoid의 output이 0~1 사이이기도 하고 매우 작은 값이 나올 수도 있음. 그래서 gradient가 layer를 넘어가면서 점점 작아진다. 그리고 chain rule에 의해 계속 곱해지면서 gradient가 거의 0에 가까워진다. - vanishing gradient 86년 backpropagation 발견 후 20년간의 2차 겨울을 맞게 된다.
+
+문제가 뭐였고 어떻게 풀었을까?
+
+* sigmoid가 적절하지 않다.
+  * 대신 ReLU(Rectified Linear Unit)를 사용한다. 마지막 layer는 확률 form으로 만들기 위해 sigmoid를 사용.
+  * sigmoid, ReLU 이외의 activation function은 tanh, maxout, ELU, Leaky ReLU 등이 있다.
+* weight 초기화를 잘못했다.
+  * ex) 모든 weight를 0으로 초기화하면 gradient가 0이 되는 문제가 있음.
+  * A fast learning algorithm for deep belief nets 논문에서 Restricted Boatman Machine(RBM)을 이용한 초기화를 제안함.  
+  RBM은 뭐냐? forward(encoder)시 input x와 backward(decoder)시 recreate된 x가 차이가 최소가 되도록 weight를 조정하는 것.
+  * how to RBM
+    * 인접한 두 레이어 사이에서 encode/decode를 반복하여 입력이 유지되도록 weight를 잡는다 - pre-training을 통해 초기화.
+    * pre-training을 해 놓은 상태에서의 learning은 fine tuning이라고 부를 정도로 빠르게 처리됨.
+  * RBM을 안써도 되는 다른 방법들이 발견됨.
+    * Xavier initialization (2010): 노드의 입력, 출력 갯수에 맞춰서 세팅 하는 방법 - `W = np.random.randn(fan_in, fan_out) / np.sqrt(fan_in)`
+    * He initialize (2015) - `W = np.random.randn(fan_in, fan_out) / np.sqrt(fan_in / 2)`
+* labeling된 데이터가 너무 적다.
+* 계산 속도가 너무 느리다.
+
+## Lec 10-3 - Drop out과 ensemble
+
+오버피팅은 알겠는데 오버피팅 되어있는지 어떻게 알 수 있나 - layer, feature등 모델 복잡도가 높아졌는데 testing accuracy가 점점 낮아진다면 오버피팅.
+
+* more training data
+* reduce feature - deep learning에서는 적합하지 않은 방법.
+* regularization
+* neural net에서는 drop out이라는 방법도 있다.
+
+dropout
+
+학습할 때 랜덤하게 일부 노드를 쓰지않는 방법.
+주의할 점은 학습하는 동안만 drop한다는 것. evaluate, prediction에서는 dropout을 하지 않고 전체 노드를 사용한다.
+
+ensemble
+
+data set을 n개로 쪼개고 network도 n개를 만들어서 각각 따로따로 학습시키고, 마지막에 n개의 network을 모두 합치는 방법.
+
+## Lec 10-4
+
+자유롭게 쌓고 점프하고 split했다가 merge도 하고 할 수 있다.  
+신경 세포의 연결에 제약이 없는 것 처럼.
+
+연결을 옆으로 한 것 - RNN
+
+
 

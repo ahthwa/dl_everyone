@@ -18,10 +18,10 @@ y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1) + b2)))
 # sigmoid 함수를 사용
 #y_ = tf.sigmoid(tf.matmul(W2, l1) + b2)
 
-# bias를 matrix안에
+# bias를 matrix안에. bias를 더하는 것이 더 직관적이다.
 #W2 = tf.Variable(tf.random_uniform([1, 3], -1.0, 1.0))
-#y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1_out))))
 #l1_out = tf.concat(0, [l1, tf.ones([1, len(x_data[0])])])
+#y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1_out))))
 
 cost = - tf.reduce_mean(Y * tf.log(y_) + (1 - Y) * tf.log(1-y_))
 alpha = 0.1
