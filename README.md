@@ -235,5 +235,9 @@ data set을 n개로 쪼개고 network도 n개를 만들어서 각각 따로따�
 
 연결을 옆으로 한 것 - RNN
 
+## Lab 10 - NN, ReLU, Xavier, Dropout and Adam
 
+gradient descent 대신 adam optimizer를 사용하고 있다. 현존하는 가장 빠른 optimizer라고.
+
+[Alec Radford's animations for optimization algorithms](www.denizyuret.com/2015/03/alec-radfords-animations-for.html)
 
