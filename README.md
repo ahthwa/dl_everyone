@@ -1,7 +1,7 @@
 # 모두를 위한 딥러닝 실습
-* 강의 영상: https://www.youtube.com/playlist?list=PLlMkM4tgfjnLSOjrEJN31gZATbcj_MpUm
-* 강의 웹사이트: http://hunkim.github.io/ml/
-* 코드: https://github.com/FuZer/Study_TensorFlow
+* 강의 영상: `https://www.youtube.com/playlist?list=PLlMkM4tgfjnLSOjrEJN31gZATbcj_MpUm`
+* 강의 웹사이트: `http://hunkim.github.io/ml/`
+* 코드: `https://github.com/FuZer/Study_TensorFlow`
 
 ## Lec 00 - Machine/Deep learning 수업의 개요와 일정
 
@@ -43,10 +43,10 @@ Keyword: 학습 순서 (hypothesis, cost function, optimize), linear regression�
 
 ## Lab 02 - Linear Regression
 
-* reduce_mean
+* reduce\_mean
 * train.GradientDescentOptimizer
   * minimize: 이 operation이 training (eg `train = optimizer.minimize(cost)` )
-* initialize_all_variables: 이 함수도 세션 내에서 실행해야 함.
+* initialize\_all\_variables: 이 함수도 세션 내에서 실행해야 함.
 * placeholder를 이용하면 모델을 재사용할 수 있다.
 
 ## Lec 03 - How to minimize cost
@@ -240,4 +240,51 @@ data set을 n개로 쪼개고 network도 n개를 만들어서 각각 따로따�
 gradient descent 대신 adam optimizer를 사용하고 있다. 현존하는 가장 빠른 optimizer라고.
 
 [Alec Radford's animations for optimization algorithms](www.denizyuret.com/2015/03/alec-radfords-animations-for.html)
+
+## Lec 11-1 - Convolutional Neural Network
+
+from cs231n.stanford.edu
+
+filter로 image를 훑으면서 image block 하나를 one number로 만들어 냄.
+
+convolution했을 때 output layer의 크기에 영향을 주는 요소는 input의 크기, filter의 크기, stride, padding 등이 있다.
+
+output size = (N - F) / stride + 1
+
+padding: input image의 테두리에 0를 붙임. 두가지 이유가 있는데 하나는 테두리를 알려주고 싶다. 또 하나는 이미지의 크기가 점점 작아지는 걸 줄인다.
+
+7 by 7 image > padding 1 pixel > 9 by 9 image
+
+output size with padding = (N + 2 * p - F) / stride + 1
+
+eg) 32 * 32 * 3 image, 6 filter ( 5 by 5 by 3), no padding, string 1 이면 output size = (28 by 28 by 6)
+
+## Lec 11-2 - Max Pooling and others
+
+pooling layer
+
+cnn 과 마찬가지로 pooling 도 filter라고 보면 output layer크기를 동일한 방법으로 계산할 수 있다.  
+pooling의 방법은 mean, min, max pooling등이 있고 max pooling을 가장 많이 사용한다.
+
+fully connected layer 는 보통 뉴럴 넷. softmax layer 같은걸 둬서 classifier를 만들면 된다.
+
+[CNN demo](http://cs.stanford.edu/people/karpathy/convnetjs/demo/cifar10.html)
+
+## Lec 11-3 - CNN case study
+
+* LeNet - 1998 LeCun. 글자 인식. input: 32 by 32 by 5, (conv, pooling) * 2 + fc + gaussian connections, 10 output
+* AlexNet - 2012 ImageNet 1등. input: 227 by 227 by 3. First Cnv: 96개 필터(11by11by3 filter. stride 4) , ... deep network. normalization layer가 있다.  
+* GoogLeNet - 2014 ImageNet 1등. Inception module(1by1 convolution, 1by1 conv - 3by3 conv, 1by1 conv - 5by5 conv, 3by3 max pooling - 1by1 conv 를 병렬로 계산한다음 묶는 sub network)을 여러번 쌓았음.
+* ResNet - 2015 He 등. error 3.6%. 152개 layer를 사용함. 2 단계 앞의 output을 바로 전단계 output과 합친 값을 input으로 받음(Residual Net). 빠르다. 왜 잘 되는지 설명이 안됨.
+* Convolutional Neural Netowrks for Sentence Classification. Yoon Kim, 2014. NLP분야에서도 사용할 수 있다.
+* AlphaGo. policy network에 사용.
+
+## Lab 11 - CNN
+
+[source code](https://github.com/nlintz/TensorFlow-Tutorials)
+
+
+
+
+
 
