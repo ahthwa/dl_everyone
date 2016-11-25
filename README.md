@@ -285,7 +285,46 @@ fully connected layer 는 보통 뉴럴 넷. softmax layer 같은걸 둬서 clas
 
 dropout을 convolution layer에서는 적용하지 않고, fully connected layer에만 적용하는 사례가 많은데 그 이유는 무엇인가. - `https://www.reddit.com/r/MachineLearning/comments/42nnpe/why_do_i_never_see_dropout_applied_in/`
 
+## Lec 12 - RNN
 
+sequence data에 대한 learning. 이전 단계의 계산 결과가 다음 단계에 영향을 주도록 state를 둔 network
 
+특징
+
+* input, **state**, output이 있다.
+* weight도 세가지가 있다. input to state(W\_xh), state to state(W\_hh), state to output(W\_hy)
+* time t의 state h\_t = fw(h\_t-1, x\_t) (예를 들면 = tanh( w\_hh * h\_t-1 + w\_xh * x\_t) )
+* output y = w\_hy * h\_t
+
+예제 - character level language model
+
+글자가 input으로 들어오면 다음 글자를 예측한다.
+
+1. input encoding - one-hot encoding 한다.
+2. training data에서 한 글자씩 꺼내서 learning. 먼저 state를 계산하는데 state 1은 이전 state가 없으므로 input만으로 계산한다.
+3. output은 state에 weight를 곱해서 계산한다. training data의 실제 값과 오차를 구해서 learning하면 되겠지.
+
+응용 - Language Model, Speech Recognition, Machine Translation, Converation Modeling/Question Answering, Image/Video Captioning, Image/Music/Dance Generation
+
+RNN을 바로 쓰지 않고 LSTM이나 GRU를 사용한다.
+
+## Lab 12
+
+http://bit.ly/awskr-feedback AWS 100달러 무료 크레딧.
+
+[mnist를 RNN(LSTM)으로 푸는 예제](https://github.com/nlintz/TensorFlow-Tutorials/blob/master/07_lstm.ipynb)
+
+[character language model 예제](https://gist.github.com/j-min/481749dcb853b4477c4f441bf7452195)
+
+[RNNS IN TENSORFLOW, A PRACTICAL GUIDE AND UNDOCUMENTED FEATURES](http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/)
+
+질문들.
+
+* input feature의 갯수, output의 갯수, rnn size가 동일한 예들만 있는데 왜 그런가.
+* input feature가 rnn 노드와 fully connected 되는가? 아마 그렇겠지?
+  * 첫번째 질문에 이어서, 그렇다면 rnn size는 꼭 input 과 동일할 필요는 없을 것 같은데.  
+  * feature n input과 size m RNN layer간에는 n by m matrix가 있는 거겠지?
+* initial state를 줄 때 왜 batch size * rnn size 만큼 크기를 잡는가. batch example 별로 update하는건가?
+* cnn에서 pooling layer나 ReLU가 있을때 미분에는 영향이 없나?
 
 
