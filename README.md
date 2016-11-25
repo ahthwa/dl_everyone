@@ -283,6 +283,7 @@ fully connected layer 는 보통 뉴럴 넷. softmax layer 같은걸 둬서 clas
 
 [source code](https://github.com/nlintz/TensorFlow-Tutorials)
 
+dropout을 convolution layer에서는 적용하지 않고, fully connected layer에만 적용하는 사례가 많은데 그 이유는 무엇인가. - `https://www.reddit.com/r/MachineLearning/comments/42nnpe/why_do_i_never_see_dropout_applied_in/`
 
 
 
