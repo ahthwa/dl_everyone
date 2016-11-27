@@ -327,4 +327,14 @@ http://bit.ly/awskr-feedback AWS 100달러 무료 크레딧.
 * initial state를 줄 때 왜 batch size * rnn size 만큼 크기를 잡는가. batch example 별로 update하는건가?
 * cnn에서 pooling layer나 ReLU가 있을때 미분에는 영향이 없나?
 
+## Lec 13 - tensorflow in AWS with GPU
 
+비용이 문제네.
+
+`python train.py; shutdown -h now`
+
+## Google Clound ML with Examples 1
+
+[source code](https://github.com/hunkim/GoogleCloudMLExamples)
+
+AWS처럼 챙겨서 끄지 않아도 job 마치면 종료된다. 어쨌든 과금 되므로 비용 생각해가면서 쓸 것.
