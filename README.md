@@ -320,9 +320,9 @@ http://bit.ly/awskr-feedback AWS 100달러 무료 크레딧.
 
 질문들.
 
-* input feature의 갯수, output의 갯수, rnn size가 동일한 예들만 있는데 왜 그런가.
-* input feature가 rnn 노드와 fully connected 되는가? 아마 그렇겠지?
-  * 첫번째 질문에 이어서, 그렇다면 rnn size는 꼭 input 과 동일할 필요는 없을 것 같은데.  
+* input feature의 갯수, output의 갯수, rnn size가 동일한 예들만 있는데 왜 그런가. - A: 예제니까.
+* input feature가 rnn 노드와 fully connected 되는가? 아마 그렇겠지? - A: 맞다. cs231n lecture 10의 implementation에서 확인함.
+  * 첫번째 질문에 이어서, 그렇다면 rnn size는 꼭 input 과 동일할 필요는 없을 것 같은데. - A: 맞다. [TensorFlow Example](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/examples/3_NeuralNetworks/recurrent_network.py) 에서는 rnn size를 임의로 잡았다. class개수와 rnn size가 다른데 이것은 마지막에 softmax layer를 하나 더 둬서 해결했다.
   * feature n input과 size m RNN layer간에는 n by m matrix가 있는 거겠지?
 * initial state를 줄 때 왜 batch size * rnn size 만큼 크기를 잡는가. batch example 별로 update하는건가?
 * cnn에서 pooling layer나 ReLU가 있을때 미분에는 영향이 없나?
