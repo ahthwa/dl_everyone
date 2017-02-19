@@ -6,7 +6,7 @@ y_data = [1., 2., 3.]
 W = tf.placeholder(tf.float32)
 
 #y= W * x_data
-y= tf.mul(W, x_data)
+y= tf.multiply(W, x_data)
 cost = tf.reduce_sum(tf.pow(y_data - y, 2)) / len(x_data)
 init = tf.initialize_all_variables()
 

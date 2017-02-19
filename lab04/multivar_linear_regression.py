@@ -11,7 +11,7 @@ x1 = tf.placeholder(tf.float32)
 x2 = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
 
-y_ = tf.mul(w1, x1) + tf.mul(w2, x2) + b
+y_ = tf.multiply(w1, x1) + tf.multiply(w2, x2) + b
 
 cost = tf.reduce_mean(tf.pow(y_ - y, 2))
 alpha = tf.Variable(0.1)

@@ -16,10 +16,10 @@ with tf.name_scope('model') as scope:
     l1 = tf.div(1., 1. + tf.exp( - (tf.matmul(W1, X))))
     y_ = tf.div(1., 1. + tf.exp( - (tf.matmul(W2, l1) + b2)))
 
-tf.histogram_summary('weight 1', W1)
-tf.histogram_summary('weight 2', W2)
-tf.histogram_summary('bias 2', b2)
-tf.histogram_summary('y_', y_)
+tf.summary.histogram('weight 1', W1)
+tf.summary.histogram('weight 2', W2)
+tf.summary.histogram('bias 2', b2)
+tf.summary.histogram('y_', y_)
 
 # sigmoid 함수를 사용
 #y_ = tf.sigmoid(tf.matmul(W2, l1) + b2)
@@ -36,16 +36,16 @@ with tf.name_scope('c') as scope:
     train = optimizer.minimize(cost)
     correct_prediction = tf.equal(tf.floor(y_ + 0.5), Y)
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-tf.scalar_summary('cost', cost)
-tf.scalar_summary('accuracy', accuracy)
+tf.summary.scalar('cost', cost)
+tf.summary.scalar('accuracy', accuracy)
 
 init = tf.initialize_all_variables()
 
 with tf.Session() as sess:
     sess.run(init)
 
-    merged_summary = tf.merge_all_summaries()
-    summary_writer = tf.train.SummaryWriter('log', sess.graph)
+    merged_summary = tf.summary.merge_all()
+    summary_writer = tf.summary.FileWriter('log', sess.graph)
 
     for step in range(10001):
         cost_val, weight1_val, weight2_val, _ = sess.run([cost, W1, W2, train], feed_dict = {X:x_data, Y:y_data})

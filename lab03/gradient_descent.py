@@ -11,7 +11,7 @@ y= W * X
 cost = tf.reduce_sum(tf.pow(Y - y, 2)) / len(x_data)
 init = tf.initialize_all_variables()
 
-descent = W - tf.mul(0.1, tf.reduce_mean(tf.mul(tf.mul(W, x_data) - Y, x_data)))
+descent = W - tf.multiply(0.1, tf.reduce_mean(tf.multiply(tf.multiply(W, x_data) - Y, x_data)))
 update = W.assign(descent)
 
 sess = tf.Session()

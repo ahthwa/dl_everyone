@@ -1,5 +1,5 @@
 import tensorflow as tf
-import input_data
+from tensorflow.examples.tutorials.mnist import input_data
 import random
 
 learning_rate = 0.01
